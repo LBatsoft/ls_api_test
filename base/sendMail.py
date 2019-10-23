@@ -16,11 +16,11 @@ htmlReportPath = PATH("../Report/Report.html")
 
 
 #收件人
-recvaddress = ['15168208716@163.com']
+recvaddress = ['liubo@adnice.com']
 
 #发件人
-sendaddr_name = 'shuang.Li@lcare.net'
-sendaddr_pswd = 'ls123456'
+sendaddr_name = 'liubo@adnice.com'
+sendaddr_pswd = 'Test2580'
 
 
 class SendMail:
@@ -47,10 +47,10 @@ class SendMail:
         """生成邮件的内容，和html报告附件"""
         xlsxpart = MIMEApplication(open(reportPath, 'rb').read())
         xlsxpart.add_header('Content-Disposition', 'attachment',
-                                filename=('gbk', '', "Report.xlsx"))  # 注意：此处basename要转换为gbk编码，否则中文会有乱码。
+                                filename=('utf-8', '', "Report.xlsx"))  # 注意：此处basename要转换为gbk编码，否则中文会有乱码。
         with open(os.path.join(htmlReportPath), 'rb') as f:
             mailbody = f.read()
-        att1 = MIMEText(mailbody, 'html', 'gbk')
+        att1 = MIMEText(mailbody, 'html', 'utf-8')
 
 
         att1["Content-Type"] = 'application/octet-stream'
@@ -66,7 +66,7 @@ class SendMail:
         self.__take_messages()
         self.msg['from'] = sendaddr_name
         try:
-            smtp = smtplib.SMTP('smtp.lcare.net', 25)
+            smtp = smtplib.SMTP('smtp.qiye.163.com', 25)
             smtp.login(sendaddr_name, sendaddr_pswd)
             smtp.sendmail(self.msg['from'], self.sendTo, self.msg.as_string())
             smtp.close()
