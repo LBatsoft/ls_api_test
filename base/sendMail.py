@@ -16,11 +16,11 @@ htmlReportPath = PATH("../Report/Report.html")
 
 
 #收件人
-recvaddress = ['liubo@adnice.com']
+recvaddress = ['xx.com']
 
 #发件人
-sendaddr_name = 'liubo@adnice.com'
-sendaddr_pswd = 'Test2580'
+sendaddr_name = 'xx.com'
+sendaddr_pswd = 'xx'
 
 
 class SendMail:
